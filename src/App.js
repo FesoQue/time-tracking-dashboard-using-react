@@ -1,12 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import Header from './Header';
 import ellipsis from './images/icon-ellipsis.svg';
-import Work from './images/icon-work.svg';
-import Play from './images/icon-play.svg';
-import Study from './images/icon-study.svg';
-import Exercise from './images/icon-exercise.svg';
-import Social from './images/icon-social.svg';
-import SelfCare from './images/icon-self-care.svg';
 import preloader from './images/preloader.svg';
 
 const App = () => {
@@ -16,7 +10,6 @@ const App = () => {
   const [records, setRecords] = useState('yesterday');
   const [error, setError] = useState(false);
   const [isActive, setisActive] = useState(false);
-  const [disabled, setDiasbled] = useState(false);
 
   const fetchUserActivity = async () => {
     try {
@@ -43,21 +36,18 @@ const App = () => {
       case 'Daily':
         setTimeframe('Daily');
         setisActive(true);
-        setDiasbled(true);
         setPeriod('Daily');
         setRecords('Yesterday');
         break;
       case 'Weekly':
         setTimeframe('Weekly');
         setisActive(true);
-        setDiasbled(true);
         setPeriod('Weekly');
         setRecords('Last Week');
         break;
       case 'Monthly':
         setTimeframe('Monthly');
         setisActive(true);
-        setDiasbled(true);
         setPeriod('Monthly');
         setRecords('Last Month');
         break;
@@ -98,7 +88,7 @@ const App = () => {
                     className={timeframe === 'Daily' ? 'active' : 'btn'}
                     data-id='Daily'
                     onClick={() => handleClick('Daily')}
-                    disabled={timeframe === 'Daily' ? disabled : false}
+                    disabled={isActive}
                   >
                     Daily
                   </button>
@@ -107,7 +97,7 @@ const App = () => {
                     className={timeframe === 'Weekly' ? 'active' : 'btn'}
                     data-id='Weekly'
                     onClick={() => handleClick('Weekly')}
-                    disabled={timeframe === 'Weekly' ? disabled : false}
+                    disabled={isActive}
                   >
                     Weekly
                   </button>
@@ -116,13 +106,14 @@ const App = () => {
                     className={timeframe === 'Monthly' ? 'active' : 'btn'}
                     data-id='Monthly'
                     onClick={() => handleClick('Monthly')}
-                    disabled={timeframe === 'Monthly' ? disabled : false}
+                    disabled={isActive}
                   >
                     Monthly
                   </button>
                 </div>
               </div>
             </div>
+            {/* activity cards */}
             <div className='activities container'>
               {userActivity.map((activity, index) => {
                 let { title, timeframes } = activity;
@@ -151,6 +142,7 @@ const App = () => {
           </div>
         )}
       </main>
+      {/* Attribution */}
       <footer className='container'>
         <div class='attribution'>
           Challenge by
