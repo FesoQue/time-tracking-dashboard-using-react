@@ -88,7 +88,7 @@ const App = () => {
                     className={timeframe === 'Daily' ? 'active' : 'btn'}
                     data-id='Daily'
                     onClick={() => handleClick('Daily')}
-                    disabled={isActive}
+                    disabled={timeframe === 'Daily' && isActive}
                   >
                     Daily
                   </button>
@@ -97,7 +97,7 @@ const App = () => {
                     className={timeframe === 'Weekly' ? 'active' : 'btn'}
                     data-id='Weekly'
                     onClick={() => handleClick('Weekly')}
-                    disabled={isActive}
+                    disabled={timeframe === 'Weekly' && isActive}
                   >
                     Weekly
                   </button>
@@ -106,7 +106,7 @@ const App = () => {
                     className={timeframe === 'Monthly' ? 'active' : 'btn'}
                     data-id='Monthly'
                     onClick={() => handleClick('Monthly')}
-                    disabled={isActive}
+                    disabled={timeframe === 'Monthly' && isActive}
                   >
                     Monthly
                   </button>
