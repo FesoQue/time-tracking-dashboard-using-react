@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
+import { Card } from './Card';
+import { Footer } from './Footer';
 import Header from './Header';
-import ellipsis from './images/icon-ellipsis.svg';
 import preloader from './images/preloader.svg';
 
 const App = () => {
@@ -116,26 +117,13 @@ const App = () => {
             {/* activity cards */}
             <div className='activities container'>
               {userActivity.map((activity, index) => {
-                let { title, timeframes } = activity;
-                const periodicity = period.toLowerCase();
-                const currentStreak = timeframes[periodicity].current;
-                const previousStreak = timeframes[periodicity].previous;
-                title = title.split(' ').join('-');
                 return (
-                  <div className='activity-card' key={index} id={title}>
-                    <div className='info'>
-                      <div className='desc-heading'>
-                        <h3>{title}</h3>
-                        <img src={ellipsis} alt='' />
-                      </div>
-                      <div className='desc-info'>
-                        <p>{currentStreak}hrs</p>
-                        <p>
-                          {records} - {previousStreak}hrs
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <Card
+                    key={index}
+                    activity={activity}
+                    period={period}
+                    records={records}
+                  />
                 );
               })}
             </div>
@@ -143,19 +131,7 @@ const App = () => {
         )}
       </main>
       {/* Attribution */}
-      <footer className='container'>
-        <div class='attribution'>
-          Challenge by
-          <a
-            href='https://www.frontendmentorio?ref=challenge'
-            rel='noreferrer'
-            target='_blank'
-          >
-            Frontend Mentor
-          </a>
-          . Coded by <a href='https://www.github.com/fesoque'>Feso Que</a>.
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };
